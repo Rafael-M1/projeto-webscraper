@@ -1,0 +1,37 @@
+# Ambiente virtual
+venv/
+.env/
+.venv/
+
+# Arquivos Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de build
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# IDEs / Editores
+.vscode/
+.idea/
+*.swp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Selenium / WebDriver
+chromedriver*
+geckodriver*
+
+# Arquivos de configuração local
+config.py
