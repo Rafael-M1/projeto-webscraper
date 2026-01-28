@@ -35,3 +35,6 @@ geckodriver*
 
 # Arquivos de configuração local
 config.py
+
+# Arquivos da página de screenshots
+screenshots/*
