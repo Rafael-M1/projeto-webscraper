@@ -8,7 +8,7 @@ from selenium.common.exceptions import (
     TimeoutException
 )
 from screenshot_manager import salvar_print_se_diferente
-from config import URL_PAGINA, URL_BUSCA_PAGINA
+from config import URL_PAGINA, URL_BUSCA_PAGINA, NUMERO
 from driver_factory import criar_driver
 from decorators import verificar_tempo_execucao
 
@@ -63,11 +63,10 @@ def busca_atualizacao_cia():
         )
         elemento.clear()
         print(f"Limpa o Input encontrado")
-        # Insere numeros do processo
-        numero_processo = "0036290-94.2024.8.11.0000"
-        for char in numero_processo:
-            elemento.send_keys(char)
+        # Insere numeros
+        for char in NUMERO:
             tempo = random.uniform(0.11, 0.41)
+            elemento.send_keys(char)
             print(f"Pressiona a tecla {char} (delay: {tempo:.2f}s)")
             time.sleep(tempo)
         # pressiona Enter
