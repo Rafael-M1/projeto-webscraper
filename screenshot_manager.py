@@ -50,27 +50,27 @@ def _gerar_nome_unico():
 # FUNÇÃO PÚBLICA (USE ESSA)
 # ==========================
 
-def salvar_print_se_diferente(driver):
-    """
-    Salva screenshot somente se houver mudança visual
-    """
+def salvar_print(driver, numero_processo):
 
-    _garantir_pasta()
+    pasta_processo = os.path.join(PASTA_PRINTS, str(numero_processo))
+    os.makedirs(pasta_processo, exist_ok=True)
 
-    temp_path = TEMP_IMAGEM
+    ultima_imagem = os.path.join(pasta_processo, "ultimo.png")
+    temp_imagem = os.path.join(pasta_processo, "temp.png")
 
-    # Screenshot temporário
-    driver.save_screenshot(temp_path)
+    driver.save_screenshot(temp_imagem)
 
-    if _imagem_diferente(temp_path, ULTIMA_IMAGEM):
+    if _imagem_diferente(temp_imagem, ultima_imagem):
         nome_arquivo = _gerar_nome_unico()
-        destino = os.path.join(PASTA_PRINTS, nome_arquivo)
-        shutil.copy(temp_path, destino)
-        shutil.copy(temp_path, ULTIMA_IMAGEM)
+        destino = os.path.join(pasta_processo, nome_arquivo)
+
+        shutil.copy(temp_imagem, destino)
+        shutil.copy(temp_imagem, ultima_imagem)
+
         print(f"Mudança detectada — Screenshot salvo: {destino}")
-        os.remove(temp_path)
+        os.remove(temp_imagem)
         return destino
     else:
         print("Nenhuma mudança detectada — Screenshot ignorado")
-        os.remove(temp_path)
+        os.remove(temp_imagem)
         return None
